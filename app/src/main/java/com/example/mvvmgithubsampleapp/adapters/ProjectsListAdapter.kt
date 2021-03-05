@@ -28,9 +28,13 @@ class ProjectsListAdapter : PagedListAdapter<Item, ProjectsListAdapter.MyViewHol
             owner.putParcelable("owner", getItem(position)?.owner)
             val ownerFragment = OwnerFragment()
             ownerFragment.arguments = owner
-            (it.context as MainActivity).supportFragmentManager.beginTransaction().replace(
+            val beginTransaction =
+                (it.context as MainActivity).supportFragmentManager.beginTransaction()
+            beginTransaction.replace(
                 R.id.container, ownerFragment
-            ).commit()
+            )
+            beginTransaction.addToBackStack("OwnerFragment")
+            beginTransaction.commit()
         }
     }
 
