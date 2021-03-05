@@ -10,7 +10,7 @@ import com.example.mvvmgithubsampleapp.databinding.FragmentOwnerBinding
 import com.example.mvvmgithubsampleapp.model.Owner
 
 class OwnerFragment : Fragment() {
-    lateinit var binding: FragmentOwnerBinding
+    private lateinit var binding: FragmentOwnerBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,

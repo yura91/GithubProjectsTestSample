@@ -9,24 +9,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.mvvmgithubsampleapp.GithubPrApplication
 import com.example.mvvmgithubsampleapp.adapters.ProjectsListAdapter
 import com.example.mvvmgithubsampleapp.databinding.FragmentGithubListBinding
 import com.example.mvvmgithubsampleapp.viewmodel.ProjecsViewModel
-import javax.inject.Inject
 
-class GitHubListFragment : Fragment() {
+class ProjectsListFragment : Fragment() {
 
     private val projectsListAdapter = ProjectsListAdapter()
 
-    private val prListViewModel: ProjecsViewModel by activityViewModels<ProjecsViewModel> ()
+    private val prListViewModel: ProjecsViewModel by activityViewModels()
 
-    lateinit var binding: FragmentGithubListBinding
+    private lateinit var binding: FragmentGithubListBinding
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentGithubListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -40,7 +41,7 @@ class GitHubListFragment : Fragment() {
             Log.d("tag", "vnlsnlknlkvns")
         })
 
-        binding.textSearch.addTextChangedListener(object : TextWatcher{
+        binding.textSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 

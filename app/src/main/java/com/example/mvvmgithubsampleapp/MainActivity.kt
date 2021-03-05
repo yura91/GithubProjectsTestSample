@@ -1,9 +1,9 @@
 package com.example.mvvmgithubsampleapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mvvmgithubsampleapp.databinding.ActivityMainBinding
-import com.example.mvvmgithubsampleapp.view.GitHubListFragment
+import com.example.mvvmgithubsampleapp.view.ProjectsListFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportFragmentManager.beginTransaction().add(R.id.container, GitHubListFragment()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.container, ProjectsListFragment())
+            .commit()
     }
 }

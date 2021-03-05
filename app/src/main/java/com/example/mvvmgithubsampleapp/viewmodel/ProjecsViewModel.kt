@@ -9,10 +9,8 @@ import com.example.mvvmgithubsampleapp.model.Item
 import java.util.concurrent.Executors
 
 class ProjecsViewModel : ViewModel() {
-
-    var QUERY = ""
     var prLiveData: LiveData<PagedList<Item>>
-    val projectsDataFactory: ProjectsDataFactory
+    private val projectsDataFactory: ProjectsDataFactory
 
     init {
         val executor = Executors.newFixedThreadPool(5)
