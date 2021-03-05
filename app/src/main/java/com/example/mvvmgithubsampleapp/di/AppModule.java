@@ -1,6 +1,6 @@
 package com.example.mvvmgithubsampleapp.di;
 
-import com.example.mvvmgithubsampleapp.repository.GitHubService;
+import com.example.mvvmgithubsampleapp.repository.ProjectService;
 
 import javax.inject.Singleton;
 
@@ -12,11 +12,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 class AppModule {
     @Singleton @Provides
-    GitHubService provideGithubService() {
+    ProjectService provideGithubService() {
         return new Retrofit.Builder()
                 .baseUrl("https://api.github.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(GitHubService.class);
+                .create(ProjectService.class);
     }
 }

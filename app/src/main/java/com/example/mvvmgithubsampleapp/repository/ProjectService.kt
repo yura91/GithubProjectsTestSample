@@ -5,7 +5,11 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface GitHubService {
+interface ProjectService {
     @GET("search/repositories")
-    fun getRepositoriesList(@Query("q") query: String?): Call<ProjectsResponse>?
+    fun getRepositoriesList(
+        @Query("q") query: String?,
+        @Query("page") page: Long,
+        @Query("per_page") pageSize: Int
+    ): Call<ProjectsResponse>?
 }

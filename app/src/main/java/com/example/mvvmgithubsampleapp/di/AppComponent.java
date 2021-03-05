@@ -1,5 +1,6 @@
 package com.example.mvvmgithubsampleapp.di;
 
+import com.example.mvvmgithubsampleapp.repository.ProjectsRepository;
 import com.example.mvvmgithubsampleapp.view.GitHubListFragment;
 
 import javax.inject.Singleton;
@@ -12,5 +13,5 @@ import dagger.Component;
 })
 public interface AppComponent {
 
-    void inject(GitHubListFragment githubListFragment);
+    void inject(ProjectsRepository projectsRepository);
 }
