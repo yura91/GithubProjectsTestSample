@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.mvvmgithubsampleapp.adapters.ProjectsListAdapter
-import com.example.mvvmgithubsampleapp.databinding.FragmentGithubListBinding
+import com.example.mvvmgithubsampleapp.databinding.FragmentProjectsListBinding
 import com.example.mvvmgithubsampleapp.viewmodel.ProjecsViewModel
 
 class ProjectsListFragment : Fragment() {
@@ -20,7 +20,7 @@ class ProjectsListFragment : Fragment() {
 
     private val prListViewModel: ProjecsViewModel by activityViewModels()
 
-    private lateinit var binding: FragmentGithubListBinding
+    private lateinit var binding: FragmentProjectsListBinding
 
 
     override fun onCreateView(
@@ -28,7 +28,7 @@ class ProjectsListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentGithubListBinding.inflate(inflater, container, false)
+        binding = FragmentProjectsListBinding.inflate(inflater, container, false)
         return binding.root
     }
 

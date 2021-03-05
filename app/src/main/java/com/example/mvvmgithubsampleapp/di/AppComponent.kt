@@ -1,16 +1,11 @@
-package com.example.mvvmgithubsampleapp.di;
+package com.example.mvvmgithubsampleapp.di
 
-import com.example.mvvmgithubsampleapp.repository.ProjectsRepository;
-
-import javax.inject.Singleton;
-
-import dagger.Component;
+import com.example.mvvmgithubsampleapp.repository.ProjectsRepository
+import dagger.Component
+import javax.inject.Singleton
 
 @Singleton
-@Component(modules = {
-        AppModule.class,
-})
-public interface AppComponent {
-
-    void inject(ProjectsRepository projectsRepository);
+@Component(modules = [AppModule::class])
+interface AppComponent {
+    fun inject(projectsRepository: ProjectsRepository)
 }
