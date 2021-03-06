@@ -31,7 +31,9 @@ class ProjectsRepository(val query: String) :
             try {
                 if (response.isSuccessful) {
                     val projects = response.body()?.items
-                    callback.onResult(projects!!, null, 2L)
+                    projects?.let {
+                        callback.onResult(projects, null, 2L)
+                    }
                 } else {
                     Log.d("Error", "Error: ${response.code()}")
                     Log.d("ErrorBody", "ErrorMessage: ${response.message()}")
@@ -56,7 +58,9 @@ class ProjectsRepository(val query: String) :
                 if (response.isSuccessful) {
                     val projects = response.body()?.items
                     val nextKey = params.key + 1
-                    callback.onResult(projects!!, nextKey)
+                    projects?.let {
+                        callback.onResult(projects, nextKey)
+                    }
                 } else {
                     Log.d("Error", "Error: ${response.code()}")
                 }
