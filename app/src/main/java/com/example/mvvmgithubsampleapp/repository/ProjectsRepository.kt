@@ -1,12 +1,10 @@
 package com.example.mvvmgithubsampleapp.repository
 
+import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import com.example.mvvmgithubsampleapp.GithubPrApplication
 import com.example.mvvmgithubsampleapp.model.Item
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -28,18 +26,22 @@ class ProjectsRepository(val query: String) :
         callback: LoadInitialCallback<Long, Item>
     ) {
         scope.launch {
+            delay(2000)
             val response = projectService.getRepositoriesList(query, 1, params.requestedLoadSize)
             try {
                 if (response.isSuccessful) {
                     val projects = response.body()?.items
                     callback.onResult(projects!!, null, 2L)
                 } else {
-//                    toast("Error: ${response.code()}")
+                    Log.d("Error", "Error: ${response.code()}")
+                    Log.d("ErrorBody", "ErrorMessage: ${response.message()}")
                 }
             } catch (e: HttpException) {
-//                toast("Exception ${e.message}")
+                Log.d("Error", "Error: ${response.code()}")
+                Log.d("ErrorBody", "ErrorMessage: ${response.message()}")
             } catch (e: Throwable) {
-//                toast("Ooops: Something else went wrong")
+                Log.d("Error", "Error: ${response.code()}")
+                Log.d("ErrorBody", "ErrorMessage: ${response.message()}")
             }
         }
     }
@@ -48,6 +50,7 @@ class ProjectsRepository(val query: String) :
 
     override fun loadAfter(params: LoadParams<Long>, callback: LoadCallback<Long, Item>) {
         scope.launch {
+            delay(2000)
             val response = projectService.getRepositoriesList(query, 1, params.requestedLoadSize)
             try {
                 if (response.isSuccessful) {
@@ -55,12 +58,12 @@ class ProjectsRepository(val query: String) :
                     val nextKey = params.key + 1
                     callback.onResult(projects!!, nextKey)
                 } else {
-//                    toast("Error: ${response.code()}")
+                    Log.d("Error", "Error: ${response.code()}")
                 }
             } catch (e: HttpException) {
-//                toast("Exception ${e.message}")
+                Log.d("Error", "Error: ${response.code()}")
             } catch (e: Throwable) {
-//                toast("Ooops: Something else went wrong")
+                Log.d("Error", "Error: ${response.code()}")
             }
         }
     }
