@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmgithubsampleapp.adapters.ProjectsListAdapter
 import com.example.mvvmgithubsampleapp.databinding.FragmentProjectsListBinding
 import com.example.mvvmgithubsampleapp.viewmodel.ProjecsViewModel
@@ -35,6 +36,10 @@ class ProjectsListFragment : Fragment() {
 
         binding.swipeRefresh.setOnRefreshListener {
             prListViewModel.searchProjects(binding.textSearch.text.toString())
+        }
+
+        binding.scrollToTop.setOnClickListener {
+            (binding.list.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(0, 0);
         }
 
         binding.list.adapter = projectsListAdapter
