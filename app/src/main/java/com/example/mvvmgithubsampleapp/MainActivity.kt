@@ -11,7 +11,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportFragmentManager.beginTransaction().add(R.id.container, ProjectsListFragment())
-            .commit()
+        val beginTransaction = supportFragmentManager.beginTransaction()
+        beginTransaction.replace(R.id.container, ProjectsListFragment())
+        beginTransaction.addToBackStack("ProjectsListFragment")
+        beginTransaction.commit()
     }
 }
