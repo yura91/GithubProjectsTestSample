@@ -3,7 +3,6 @@ package com.example.mvvmgithubsampleapp.view
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,11 +33,15 @@ class ProjectsListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        binding.swipeRefresh.setOnRefreshListener {
+            prListViewModel.searchProjects(binding.textSearch.text.toString())
+        }
+
         binding.list.adapter = projectsListAdapter
 
         prListViewModel.prLiveData.observe(viewLifecycleOwner, Observer {
             projectsListAdapter.submitList(it)
-            Log.d("tag", "vnlsnlknlkvns")
+            binding.swipeRefresh.isRefreshing = false
         })
 
         binding.textSearch.addTextChangedListener(object : TextWatcher {
