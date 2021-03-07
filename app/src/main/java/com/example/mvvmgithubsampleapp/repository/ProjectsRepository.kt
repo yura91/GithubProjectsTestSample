@@ -8,6 +8,7 @@ import kotlinx.coroutines.*
 import retrofit2.HttpException
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 
@@ -33,13 +34,17 @@ class ProjectsRepository(val query: String) :
             val response = projectService.getRepositoriesList(query, 1, params.requestedLoadSize)
             try {
                 if (response.isSuccessful) {
-                    val projects = response.body()?.items
-                    val converted = projects?.map {
+                    val projectsList = response.body()?.items
+                    val convertedList = projectsList?.map {
                         val fullReadyItem = FullReadyItem()
                         try {
                             val date =
-                                SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(it.updatedAt)
-                            val formattedDate = SimpleDateFormat("dd MM yyyy").format(date)
+                                SimpleDateFormat(
+                                    "yyyy-MM-dd'T'HH:mm:ss'Z'",
+                                    Locale.getDefault()
+                                ).parse(it.updatedAt)
+                            val formattedDate =
+                                SimpleDateFormat("dd MM yyyy", Locale.getDefault()).format(date)
                             fullReadyItem.updatedAt = formattedDate
                         } catch (e: ParseException) {
                             //Handle exception here
@@ -55,8 +60,7 @@ class ProjectsRepository(val query: String) :
                         fullReadyItem
                     }
 
-
-                    converted?.let {
+                    convertedList?.let {
                         callback.onResult(it, null, 2L)
                     }
                 } else {
@@ -82,14 +86,17 @@ class ProjectsRepository(val query: String) :
             val response = projectService.getRepositoriesList(query, 1, params.requestedLoadSize)
             try {
                 if (response.isSuccessful) {
-                    val projects = response.body()?.items
-
-                    val converted = projects?.map {
+                    val projectsList = response.body()?.items
+                    val convertedList = projectsList?.map {
                         val fullReadyItem = FullReadyItem()
                         try {
                             val date =
-                                SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(it.updatedAt)
-                            val formattedDate = SimpleDateFormat("dd MM yyyy").format(date)
+                                SimpleDateFormat(
+                                    "yyyy-MM-dd'T'HH:mm:ss'Z'",
+                                    Locale.getDefault()
+                                ).parse(it.updatedAt)
+                            val formattedDate =
+                                SimpleDateFormat("dd MM yyyy", Locale.getDefault()).format(date)
                             fullReadyItem.updatedAt = formattedDate
                         } catch (e: ParseException) {
                             //Handle exception here
@@ -107,11 +114,9 @@ class ProjectsRepository(val query: String) :
 
                     val nextKey = params.key + 1
 
-                    converted?.let {
+                    convertedList?.let {
                         callback.onResult(it, nextKey)
                     }
-
-
                 } else {
                     Log.d("Error", "Error: ${response.code()}")
                 }
