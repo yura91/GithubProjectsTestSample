@@ -1,16 +1,15 @@
 package com.example.mvvmgithubsampleapp
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.mvvmgithubsampleapp.model.Item
+import com.example.mvvmgithubsampleapp.model.FullReadyItem
 
-class DiffUtilCallBack : DiffUtil.ItemCallback<Item>() {
-    override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
+class DiffUtilCallBack : DiffUtil.ItemCallback<FullReadyItem>() {
+    override fun areItemsTheSame(oldItem: FullReadyItem, newItem: FullReadyItem): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
+    override fun areContentsTheSame(oldItem: FullReadyItem, newItem: FullReadyItem): Boolean {
         return oldItem.name == newItem.name
-                && oldItem.fullName == newItem.fullName
                 && oldItem.description == newItem.description
     }
 

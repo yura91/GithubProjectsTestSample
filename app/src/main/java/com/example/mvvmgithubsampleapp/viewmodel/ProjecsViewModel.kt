@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.example.mvvmgithubsampleapp.factory.ProjectsDataFactory
-import com.example.mvvmgithubsampleapp.model.Item
+import com.example.mvvmgithubsampleapp.model.FullReadyItem
 import java.util.concurrent.Executors
 
 class ProjecsViewModel : ViewModel() {
-    var prLiveData: LiveData<PagedList<Item>>
+    var prLiveData: LiveData<PagedList<FullReadyItem>>
     private val projectsDataFactory: ProjectsDataFactory
 
     init {

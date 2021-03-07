@@ -10,14 +10,15 @@ import com.example.mvvmgithubsampleapp.DiffUtilCallBack
 import com.example.mvvmgithubsampleapp.MainActivity
 import com.example.mvvmgithubsampleapp.R
 import com.example.mvvmgithubsampleapp.databinding.ProjectListItemBinding
-import com.example.mvvmgithubsampleapp.model.Item
+import com.example.mvvmgithubsampleapp.model.FullReadyItem
 import com.example.mvvmgithubsampleapp.view.OwnerFragment
 
-class ProjectsListAdapter : PagedListAdapter<Item, ProjectsListAdapter.MyViewHolder>(
+class ProjectsListAdapter : PagedListAdapter<FullReadyItem, ProjectsListAdapter.MyViewHolder>(
     DiffUtilCallBack()
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ProjectListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ProjectListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
@@ -43,12 +44,14 @@ class ProjectsListAdapter : PagedListAdapter<Item, ProjectsListAdapter.MyViewHol
         val desc = binding.description
         val lastModText = binding.lastModDate
         val numberOfStars = binding.numberStars
+        val language = binding.usedLanguages
         val ownerAvatar = binding.ownerAvatar
 
-        fun bindPost(item : Item){
+        fun bindPost(item: FullReadyItem) {
             nameOfRepo.text = item.name
             desc.text = item.description
             lastModText.text = item.updatedAt
+            language.text = item.usedLanguages
             numberOfStars.text = item.stargazersCount.toString()
 
             Glide.with(binding.root.context).load(item.owner?.avatarUrl).into(ownerAvatar)

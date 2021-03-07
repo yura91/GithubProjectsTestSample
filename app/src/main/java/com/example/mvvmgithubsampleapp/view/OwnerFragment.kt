@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.mvvmgithubsampleapp.databinding.FragmentOwnerBinding
-import com.example.mvvmgithubsampleapp.model.Owner
+import com.example.mvvmgithubsampleapp.model.FullReadyOwner
 
 class OwnerFragment : Fragment() {
     private lateinit var binding: FragmentOwnerBinding
@@ -22,10 +22,8 @@ class OwnerFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val owner: Owner? = arguments?.getParcelable("owner") as Owner?
-        binding.nickname.text = owner?.login
+        val owner: FullReadyOwner? = arguments?.getParcelable("owner") as FullReadyOwner?
+        binding.nickname.text = owner?.nickName
         Glide.with(binding.root.context).load(owner?.avatarUrl).into(binding.avatar)
-        binding.followingsNumber.text = owner?.followingUrl
-
     }
 }
